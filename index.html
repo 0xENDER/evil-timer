@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" style="background: rgb(10, 10, 10);">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Better Start Studying!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+        
+        button {
+            width: 120px;
+            height: 40px;
+            margin: calc(50vh - 80px) calc(50vw - 60px);
+            margin-top: calc(50vh + 80px);
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            left: 0px;
+            padding: 0px;
+            background-color: white;
+            border: 0px solid;
+            border-radius: 6px;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Baloo 2', cursive;
+            cursor: pointer;
+        }
+        
+        p {
+            text-align: center;
+            font-size: 70px;
+            margin-top: calc(50vh - 80px);
+            font-family: 'Baloo 2', cursive;
+            color: white;
+            margin-bottom: 0px;
+        }
+        
+        h5 {
+            text-align: center;
+            font-size: 16px;
+            font-family: 'Baloo 2', cursive;
+            color: white;
+        }
+        
+        #firstBeat,
+        #secondBeat {
+            position: fixed;
+            z-index: -1;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            left: 0px;
+            opacity: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        @media (max-width: 820px) {
+            #firstBeat,
+            #secondBeat {
+                position: fixed;
+                z-index: -1;
+                top: 0px;
+                bottom: 0px;
+                right: -100vw;
+                left: -100vw;
+                opacity: 0;
+                height: 100vh;
+                width: 300vw;
+            }
+        }
+        
+        #firstBeat {
+            transition-duration: 0.4s;
+            background: radial-gradient(ellipse at top, #941A00, transparent), radial-gradient(ellipse at bottom, #420c00, transparent);
+        }
+        
+        #secondBeat {
+            transition-duration: 0.6s;
+            background: radial-gradient(ellipse at top, #941A00, transparent), radial-gradient(ellipse at bottom, #420c00, transparent);
+        }
+        
+        #firstBeat.animate {
+            -webkit-animation: fadeInFromNone2 0.4s ease-out;
+            -moz-animation: fadeInFromNone2 0.4s ease-out;
+            -o-animation: fadeInFromNone2 0.4s ease-out;
+            animation: fadeInFromNone2 0.4s ease-out;
+        }
+        
+        #secondBeat.animate {
+            -webkit-animation: fadeInFromNone 0.6s ease-out;
+            -moz-animation: fadeInFromNone 0.6s ease-out;
+            -o-animation: fadeInFromNone 0.6s ease-out;
+            animation: fadeInFromNone 0.6s ease-out;
+        }
+        
+        @-webkit-keyframes fadeInFromNone {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeInFromNone {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @-webkit-keyframes fadeInFromNone2 {
+            0% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeInFromNone2 {
+            0% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body style="opacity: 0; transition-duration: 0.1s;">
+
+    <button id="start">Start</button>
+
+    <div id="firstBeat"></div>
+    <div id="secondBeat"></div>
+
+    <div id="con" style="opacity: 0; transition-duration: 0.1s; position: fixed; pointer-events: none">
+        <p id="demo">DD:HH:MM:SS</p>
+        <h5 id="text">UNTIL THE MOCK EXAM</h5>
+    </div>
+
+
+    <script>
+        //var countDownDate = new Date("May 4, 2021 10:00:00").getTime();
+        var audio = new Audio('heartbeat_1.mp3');
+        //audio.play();
+        var events = [
+                new Date("May 4, 2021 10:00:00").getTime(),
+                new Date("May 19, 2021 08:00:00").getTime()
+                //new Date("May 2, 2021 23:25:00").getTime(),
+                //new Date("May 2, 2021 23:25:10").getTime()
+            ],
+            countDownDate = events[0];
+
+        if (countDownDate - (new Date().getTime()) <= 0) {
+            //countDownDate = new Date("May 19, 2021 08:00:00").getTime();
+            countDownDate = events[1];
+            document.getElementById("text").innerHTML = "UNTIL THE BUGROOT EXAM";
+        }
+
+        animate = true;
+
+        var tF = function() {
+
+                animate = !animate;
+
+                var days, hours, minutes, seconds, distance,
+                    calc = function() {
+
+                        distance = countDownDate - (new Date().getTime());
+
+                        days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        days = (days.toString().length == 1) ? "0" + days : days;
+
+                        hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        hours = (hours.toString().length == 1) ? "0" + hours : hours;
+
+                        minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        minutes = (minutes.toString().length == 1) ? "0" + minutes : minutes;
+
+                        seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        seconds = (seconds.toString().length == 1) ? "0" + seconds : seconds;
+
+                    };
+
+                calc();
+
+                var con = true;
+
+                if (distance <= 0) {
+                    if (events[1] - (new Date().getTime()) > 0) {
+                        countDownDate = events[1];
+                        document.getElementById("text").innerHTML = "UNTIL THE BUGROOT EXAM";
+                        calc();
+                    } else {
+                        clearInterval(x);
+                        document.getElementById("text").outerHTML = "";
+                        document.getElementById("demo").innerHTML = "GOOD LUCK!";
+                        con = false;
+                    }
+                }
+
+                if (con)
+                    document.getElementById("demo").innerHTML = `${days}:${hours}:${minutes}:${seconds}`;
+
+            },
+            x, y, clicked = function() {
+                document.getElementById("start").outerHTML = '';
+                document.getElementById("con").style.opacity = null;
+                document.getElementById("con").style.position = null;
+                document.getElementById("con").style.pointerEvents = null;
+                x = setInterval(tF, 1000);
+                y = setInterval(function() {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    audio.play();
+                    setTimeout(function() {
+                        document.getElementById("firstBeat").classList.add("animate");
+                    }, 10);
+                    setTimeout(function() {
+                        document.getElementById("firstBeat").classList.remove("animate");
+                        document.getElementById("secondBeat").classList.add("animate");
+                        setTimeout(function() {
+                            document.getElementById("secondBeat").classList.remove("animate");
+                        }, 800);
+                    }, 400);
+                }, 1500);
+                tF();
+
+            };
+
+        document.getElementById("start").addEventListener("mouseup", clicked);
+        // /document.getElementById("start").addEventListener("touchstart", clicked);
+
+        document.onreadystatechange = function() {
+            if (document.readyState === "complete")
+                setTimeout(function() {
+                    document.body.style.opacity = null;
+                }, 100);
+        };
+    </script>
+
+</body>
+
+</html>
