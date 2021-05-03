@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You Better Start Studying!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+        @import url('./DSDIGI/font.css');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -37,23 +38,24 @@
             color: black;
             font-size: 18px;
             font-weight: bold;
-            font-family: 'Baloo 2', cursive;
+            font-family: 'Raleway', sans-serif;
             cursor: pointer;
         }
         
         p {
             text-align: center;
-            font-size: 70px;
-            margin-top: calc(50vh - 80px);
-            font-family: 'Baloo 2', cursive;
+            font-size: 100px;
+            margin-top: calc(50vh - 100px);
+            font-family: 'DSDIGI';
             color: white;
             margin-bottom: 0px;
         }
         
         h5 {
             text-align: center;
-            font-size: 16px;
-            font-family: 'Baloo 2', cursive;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: bold;
             color: white;
         }
         
@@ -82,6 +84,10 @@
                 opacity: 0;
                 height: 100vh;
                 width: 300vw;
+            }
+            p {
+                font-size: 70px;
+                margin-top: calc(50vh - 70px);
             }
         }
         
@@ -174,7 +180,8 @@
 
     <script>
         //var countDownDate = new Date("May 4, 2021 10:00:00").getTime();
-        var audio = new Audio('heartbeat_1.mp3');
+        var audio = new Audio('heartbeat.mp3'),
+            tick = new Audio('clocktick.mp3');
         //audio.play();
         var events = [
                 new Date("May 4, 2021 10:00:00").getTime(),
@@ -190,9 +197,11 @@
             document.getElementById("text").innerHTML = "UNTIL THE BUGROOT EXAM";
         }
 
-        animate = true;
+        var animate = true,
+            playTick = false;
 
         var tF = function() {
+                playTick = !playTick;
 
                 animate = !animate;
 
@@ -235,6 +244,11 @@
                 if (con)
                     document.getElementById("demo").innerHTML = `${days}:${hours}:${minutes}:${seconds}`;
 
+                if (playTick) {
+                    tick.pause();
+                    tick.currentTime = 0;
+                    tick.play();
+                }
             },
             x, y, clicked = function() {
                 document.getElementById("start").outerHTML = '';
