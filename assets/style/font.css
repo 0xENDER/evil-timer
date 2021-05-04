@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'DSDIGI';
+    src: url('../fonts/DSDIGI.eot');
+    src: local('DSDIGI'), url('../fonts/DSDIGI.woff') format('woff'), url('../fonts/DSDIGI.ttf') format('truetype');
+}

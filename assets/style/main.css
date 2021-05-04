@@ -1,0 +1,153 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+button {
+    width: 120px;
+    height: 40px;
+    margin: calc(50vh - 80px) calc(50vw - 60px);
+    margin-top: calc(50vh + 80px);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    padding: 0px;
+    background-color: white;
+    border: 0px solid;
+    border-radius: 6px;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+    font-size: 100px;
+    margin-top: calc(50vh - 100px);
+    font-family: 'DSDIGI';
+    color: white;
+    margin-bottom: 0px;
+}
+
+h5 {
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+#firstBeat,
+#secondBeat {
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    opacity: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+@media (max-width: 820px) {
+    #firstBeat,
+    #secondBeat {
+        position: fixed;
+        z-index: -1;
+        top: 0px;
+        bottom: 0px;
+        right: -100vw;
+        left: -100vw;
+        opacity: 0;
+        height: 100vh;
+        width: 300vw;
+    }
+    p {
+        font-size: 70px;
+        margin-top: calc(50vh - 70px);
+    }
+}
+
+#firstBeat {
+    transition-duration: 0.4s;
+    background: radial-gradient(ellipse at top, #941A00, transparent), radial-gradient(ellipse at bottom, #420c00, transparent);
+}
+
+#secondBeat {
+    transition-duration: 0.6s;
+    background: radial-gradient(ellipse at top, #941A00, transparent), radial-gradient(ellipse at bottom, #420c00, transparent);
+}
+
+#firstBeat.animate {
+    -webkit-animation: fadeInFromNone2 0.4s ease-out;
+    -moz-animation: fadeInFromNone2 0.4s ease-out;
+    -o-animation: fadeInFromNone2 0.4s ease-out;
+    animation: fadeInFromNone2 0.4s ease-out;
+}
+
+#secondBeat.animate {
+    -webkit-animation: fadeInFromNone 0.6s ease-out;
+    -moz-animation: fadeInFromNone 0.6s ease-out;
+    -o-animation: fadeInFromNone 0.6s ease-out;
+    animation: fadeInFromNone 0.6s ease-out;
+}
+
+@-webkit-keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeInFromNone2 {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInFromNone2 {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
