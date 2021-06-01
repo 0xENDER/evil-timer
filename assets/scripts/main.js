@@ -1,17 +1,13 @@
-//var countDownDate = new Date("May 4, 2021 10:00:00").getTime();
 var audio = new Audio('./assets/sounds/heartbeat.mp3'),
     tick = new Audio('./assets/sounds/clocktick.mp3');
-//audio.play();
+
 var events = [
         new Date("May 4, 2021 10:00:00").getTime(),
-        new Date("May 19, 2021 08:00:00").getTime()
-        //new Date("May 2, 2021 23:25:00").getTime(),
-        //new Date("May 2, 2021 23:25:10").getTime()
+        new Date("July 6, 2021 14:00:00").getTime()
     ],
     countDownDate = events[0];
 
 if (countDownDate - (new Date().getTime()) <= 0) {
-    //countDownDate = new Date("May 19, 2021 08:00:00").getTime();
     countDownDate = events[1];
     document.getElementById("text").innerHTML = "UNTIL THE MATHS BAGRUT EXAM";
 }
@@ -95,7 +91,7 @@ var tF = function() {
     };
 
 document.getElementById("start").addEventListener("mouseup", clicked);
-// /document.getElementById("start").addEventListener("touchstart", clicked);
+//document.getElementById("start").addEventListener("touchstart", clicked);
 
 document.onreadystatechange = function() {
     if (document.readyState === "complete")
